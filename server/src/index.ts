@@ -19,7 +19,7 @@ moduleAlias.addAlias({
 import createServer from "@config/express";
 import MongoConnection from "@config/data-source"
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 
 const startServer= async ()=>{
     const app = await createServer()

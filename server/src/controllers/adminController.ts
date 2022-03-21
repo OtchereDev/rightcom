@@ -29,7 +29,7 @@ export const publishContract = async (
     newContract.weight = data.weight;
     newContract.status = 'OPEN';
     newContract.applicants = [];
-    newContract.assignedApplicant = null;
+    newContract.assignedApplicants = [];
     newContract.recipientContact = data.recipientContact
 
     await TransportContractRepo.save(newContract);
@@ -157,20 +157,23 @@ export const awardContract = async (
       );
     }
 
+
     const driver = contract.applicants.filter((applicant) => {
-      return applicant._id === req.body.id;
+      return applicant._id.toString() === req.body.id;
     });
+    console.log("first", driver)
 
     if (driver.length <= 0)
       throw createError.BadRequest('Applicant Driver not found');
 
     await TransportContractRepo.findOneAndUpdate(
-      { id: new ObjectId(req.params.id) },
+      { _id: new ObjectId(req.params.id) },
       {
-        $set: {
-          assignedApplicant: driver[0],
-          status: 'TAKEN',
+        $push: {
+          assignedApplicants: driver[0],
+          
         },
+        // $set:{status: 'TAKEN'}
       },
     );
 

@@ -30,7 +30,7 @@
     "build": "tsc -p tsconfig.build.json",
     "build:watch": "tsc -w -p tsconfig.build.json",
     "start1": "ts-node -r tsconfig-paths/register src/index",
-    "dev1": "nodemon --exec 'yarn start'",
+    "dev1": "nodemon --exec 'yarn start1'",
     "build1": "tsc",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   }

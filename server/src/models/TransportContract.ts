@@ -50,7 +50,7 @@ export default class TransportContract {
   applicants: Driver[];
 
   @Column(() => Driver,)
-  assignedApplicant: Driver;
+  assignedApplicants: Driver[];
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
