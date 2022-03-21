@@ -4,7 +4,7 @@ import { ListGroup, Badge, Dropdown } from "react-bootstrap";
 import ChangeStatusModal from "./ChangeStatusModal";
 import TakenModal from "./TakenModal";
 
-const ContractListitem = ({ data }) => {
+const ContractListitem = ({ data, setItems }) => {
   const [takenModalShow, setTakenModalShow] = useState(false);
   const [changeStatusModalShow, setChangeStatusModalShow] = useState(false);
   return (
@@ -27,19 +27,21 @@ const ContractListitem = ({ data }) => {
           </Badge>
         </h5>
 
-        <Link href={data.id ?? "admin/agsgdgdhd"}>
+        <Link href={`/admin/${data._id}` ?? "/admin/agsgdgdhd"}>
           <a>View Details</a>
         </Link>
       </div>
       <TakenModal
         showState={takenModalShow}
         setShowState={setTakenModalShow}
-        contractId={null}
+        contractId={data?._id}
+        setItems={setItems}
       />
       <ChangeStatusModal
         showState={changeStatusModalShow}
         setShowState={setChangeStatusModalShow}
-        contractId={null}
+        contractId={data?._id}
+        setItems={setItems}
       />
       <Dropdown>
         <Dropdown.Toggle variant="secondary" id="dropdown-basic">

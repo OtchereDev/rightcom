@@ -9,6 +9,7 @@ const BaseModal = ({
   okayText,
   children,
   modalTitle,
+  loading,
 }) => {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -20,7 +21,7 @@ const BaseModal = ({
         <Button variant="secondary" onClick={handleClose}>
           {cancelText ?? "Close"}
         </Button>
-        <Button variant="primary" onClick={handleOk}>
+        <Button disabled={loading} variant="primary" onClick={handleOk}>
           {okayText ?? "Save"}
         </Button>
       </Modal.Footer>

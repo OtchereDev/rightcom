@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import AwardContractModal from "./AwardContractModal";
 
-const DriverApplicant = ({driver}) => {
-  
-
-  const [showModal, setShowModal] = useState(false)
+const DriverApplicant = ({ driver, setResult }) => {
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -19,10 +17,18 @@ const DriverApplicant = ({driver}) => {
             License Number : {driver.driverLicenseNumber}
           </Card.Subtitle>
           <Card.Text>{driver.vehicleDetail}</Card.Text>
-          <Button onClick={()=>setShowModal(()=> true)} variant="success">Award Contract</Button>
+          <Button onClick={() => setShowModal(() => true)} variant="success">
+            Award Contract
+          </Button>
         </Card.Body>
       </Card>
-      <AwardContractModal name={driver.fullName} showModal={showModal} setShowModal={setShowModal} />
+      <AwardContractModal
+        name={driver.fullName}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setResult={setResult}
+        driverId={driver._id}
+      />
     </>
   );
 };
